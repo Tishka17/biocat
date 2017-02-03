@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import logging
 import configparser
@@ -7,6 +7,7 @@ from telegram.ext import CommandHandler
 from telegram.ext import MessageHandler, Filters
 
 import wiki2txt
+import web_browser
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -46,6 +47,7 @@ def echo(bot, update):
 
 dispatcher.add_handler(CommandHandler('start', start))
 dispatcher.add_handler(CommandHandler('wiki', wiki, pass_args=True))
-dispatcher.add_handler(MessageHandler(Filters.text, echo))
+dispatcher.add_handler(CommandHandler('web', web_browser.web_handler, pass_args=True))
+# dispatcher.add_handler(MessageHandler(Filters.text, echo))
 
 updater.start_polling()
