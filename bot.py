@@ -8,6 +8,7 @@ from telegram.ext import MessageHandler, Filters
 
 import wiki2txt
 import web_browser
+import holiday
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     level=logging.INFO)
@@ -48,6 +49,7 @@ def echo(bot, update):
 dispatcher.add_handler(CommandHandler('start', start))
 dispatcher.add_handler(CommandHandler('wiki', wiki, pass_args=True))
 dispatcher.add_handler(CommandHandler('web', web_browser.web_handler, pass_args=True))
+dispatcher.add_handler(CommandHandler('holiday', holiday.holiday_handler, pass_args=True))
 # dispatcher.add_handler(MessageHandler(Filters.text, echo))
 
 updater.start_polling()
